@@ -4,7 +4,6 @@ namespace App\models;
  use Delight\Auth\Auth;
  use PDO;
 
-
  class Registration
 {
 
@@ -23,12 +22,10 @@ namespace App\models;
     public function register($email, $password)
     {
         $auth = new Auth($this->pdo);
-
         try {
             $userId = $auth->register($email, $password, null, function ($selector, $token) use ($email) {
                $this->notifications->confirm($email, $selector, $token);
             });
-
             return "OK";
         }
         catch (\Delight\Auth\InvalidEmailException $e) {
@@ -41,8 +38,6 @@ namespace App\models;
            return 'User already exists';
         }
         catch (\Delight\Auth\TooManyRequestsException $e) {
-
-
             return 'Too many requests';
         }
     }

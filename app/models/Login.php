@@ -2,24 +2,16 @@
 
 
 namespace App\models;
+
 use Delight\Auth\Auth;
-use  App\models\Registration;
-
 use League\Plates\Engine;
-use App\models\Database;
-
 use PDO;
-
 
 class Login
 {
-
     private Engine $view;
-
     private Database $database;
-
     private Registration $registration;
-
     private PDO $pdo;
 
     public function __construct(Engine $view, Database $database, Registration $registration, PDO $pdo){
@@ -37,7 +29,6 @@ class Login
          session_start();
          $_SESSION['email'] = $_POST['email'];
          $_SESSION['id'] = $id;
-
          return "OK";
 
      }

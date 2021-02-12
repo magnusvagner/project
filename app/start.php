@@ -1,13 +1,11 @@
 <?php
 
 use DI\Container;
-//require "../app/controllers/HomeController.php";
-//\HomeController;
 
-use \App\controllers\HomeController;
+
+
 use DI\ContainerBuilder;
 use League\Plates\Engine;
-use App\controllers;
 use Delight\Auth\Auth;
 use Aura\SqlQuery\QueryFactory;
 

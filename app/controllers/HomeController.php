@@ -16,15 +16,12 @@ class HomeController
     private Engine $view;
     private Database $database;
     private PDO $pdo;
-
     private ImageManager $image;
 
     public function __construct( Engine $view, Database $database, Registration $registration, PDO $pdo, ImageManager $image){
 
         $this->view = $view;
-
         $this->database = $database;
-
         $this->registration = $registration;
         $this->pdo = $pdo;
         $this->image = $image;
@@ -36,10 +33,7 @@ class HomeController
             $state = "";
             $page = 1;
             $mail = $auth->getEmail();
-
-           $userId = $auth->getUserId();
-
-
+            $userId = $auth->getUserId();
             if ($auth->isLoggedIn()) {
                 $state = 'User is signed in';
             }
@@ -52,17 +46,10 @@ class HomeController
             }else {
                 $page = 1;
             }
-
-
-
             $limit = 6;
             $offset = ($page * $limit) - $limit;
-
-
             $tasksAll = $this->database->all("tasks", null, null);
-
             $total = count($tasksAll);
-
             $tasks = $this->database->all("tasks", $limit, $offset);
             $amountPage = ceil($total / $limit);
             $check = $auth->check();
@@ -73,12 +60,10 @@ class HomeController
             echo $this->view->render('create', []);
         }
         public function add(){
-        $data = $_FILES;
+          $data = $_FILES;
           $path = $this->image->upload($data);
-    // var_dump($path); die();
-            $this->database->add("tasks", $_POST, $path);
-
-            header("Location: /tasks");
+          $this->database->add("tasks", $_POST, $path);
+          header("Location: /tasks");
         }
         public function show($id){
             $task = $this->database->show("tasks", $id);
@@ -98,7 +83,6 @@ class HomeController
         {
             $data = $_FILES;
             $path = $this->image->upload($data);
-
             $this->database->update($id, $_POST, $path);
             header("Location: /tasks");
         }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\models;
-
 
 use Delight\Auth\Auth;
 use PDO;
@@ -10,20 +8,15 @@ use PDO;
 class Verification
 {
     private PDO $pdo;
-
   public function  __construct(PDO $pdo ){
       $this->pdo = $pdo;
   }
 
   public function  verify(){
-
       $auth = new Auth($this->pdo);
       try {
           $auth->confirmEmail($_GET['selector'], $_GET['token']);
-
           return "Email был успешно верифицирован. Пожалуйста залогиньтесь!";
-
-
       }
       catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
           return 'Invalid token';

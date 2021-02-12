@@ -7,6 +7,7 @@ namespace App\models;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 class Mailer
+{
 
 public function send($email, $body)
 {
@@ -32,18 +33,9 @@ public function send($email, $body)
 
         //Recipients
         $mail->setFrom('magnusvagner2@gmail.com', 'ToDO-site');
-        $mail->addAddress($email, 'Joe User');     // Add a recipient
-       // $mail->addAddress('ellen@example.com');               // Name is optional
-       // $mail->addReplyTo('info@example.com', 'Information');
-       // $mail->addCC('cc@example.com');
-       // $mail->addBCC('bcc@example.com');
+        $mail->addAddress($email, 'Joe User');
 
-        // Attachments
-       // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-        // Content
-        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = ' Your email confirmation';
         $mail->Body = "<a href=$body>Confirm email</a>";
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

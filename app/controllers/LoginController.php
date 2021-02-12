@@ -12,15 +12,10 @@ use PDO;
 
 class LoginController
 {
-
-
     private Engine $view;
-
     private Database $database;
-
     private Registration $registration;
     private PDO $pdo;
-
     private Login $login;
 
     public function __construct(Engine $view, Database $database, Registration $registration, PDO $pdo, Login $login)

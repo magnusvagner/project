@@ -13,17 +13,13 @@ class RegisterController
     private Database $database;
 
     public function __construct( Engine $view, Database $database, Registration $registration){
-
         $this->view = $view;
-
         $this->database = $database;
-
         $this->registration = $registration;
     }
 
     public function register(){
         echo $this->view->render("register", []);
-
     }
 
     public function reg(){
@@ -35,12 +31,10 @@ class RegisterController
         if(strlen($password ) < 6){
             $error[] = "Короткий пароль";
             $flag = false;
-
         }
         if(empty($password) || empty($email)){
             $error[] = "Все поля обязательны к заполнению!";
             $flag = false;
-
         }
         $emailValidator = filter_var($email, FILTER_VALIDATE_EMAIL);
 
@@ -48,8 +42,6 @@ class RegisterController
             $error[] = "Неверный формат email!!";
             $flag = false;
         }
-
-
      if($flag){
        $res = $this->registration->register($_POST['email'], $_POST['password']);
          //var_dump($res); die();
@@ -60,15 +52,10 @@ class RegisterController
       }else{
           $error[] = $res;
           echo $this->view->render("register", ['error' => $error]);
-
       }
      }else{
-
          echo $this->view->render("register", ['error' => $error]);
      }
-
-
-
     }
 
 
